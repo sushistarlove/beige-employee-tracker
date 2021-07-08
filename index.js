@@ -1,7 +1,6 @@
 const inquirer = require("inquirer");
 const db = require("./db");
-
-db.getAllEmployees() 
+getAllEmployees() 
 
 
 function runPrompt() {
@@ -23,31 +22,31 @@ function runPrompt() {
     ]).then(function(val) {
         switch (val.choice) {
             case "View All Employees":
-                db.getAllEmployees();
+                getAllEmployees();
                 break;
 
                 case "View All Employees by Role":
-                db.getAllRoles();
+                getAllRoles();
                 break;
 
                 case "View All Employees by Department":
-                db.getAllEmployees();
+                getAllEmployees();
                 break;
 
                 case  "Add Employee":
-                db.addEmployee();
+                addEmployee();
                 break;
 
                 case "Add Role":
-                db.addRole();
+                addRole();
                 break;
 
                 case "Add Department":
-                db.addDepartment();
+                addDepartment();
                 break;
 
                 case "Update Employee Role":
-                db.updateEmployeeRole();
+                updateEmployeeRole();
                 break;
 
         }
