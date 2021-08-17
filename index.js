@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
-const db = require("./db");
-getAllEmployees() 
+const db = require("./db/index");
+require("console.table");
 
 
 function runPrompt() {
@@ -20,6 +20,7 @@ function runPrompt() {
             ]
         }
     ]).then(function(val) {
+        console.log(val)
         switch (val.choice) {
             case "View All Employees":
                 getAllEmployees();
@@ -30,7 +31,7 @@ function runPrompt() {
                 break;
 
                 case "View All Employees by Department":
-                getAllEmployees();
+                getAllDepartments();
                 break;
 
                 case  "Add Employee":
@@ -53,4 +54,57 @@ function runPrompt() {
     })
 }
 
-runPrompt()
+async function getAllEmployees() {
+    console.log(db)
+    // const employees = await db.getAllEmployees()
+    // console.table(employees);
+    runPrompt();
+}
+async function getAllRoles() {
+    const roles = await db.getAllRoles()
+    console.table(roles);
+    runPrompt();
+}
+async function returnRoles() {
+    const roles = await db.getAllRoles()
+    return roles
+}
+async function getAllDepartments() {
+    const departments = await db.getAllDepartments()
+    console.table(departments);
+    runPrompt();
+}
+
+
+async function addEmployee() {
+    const roles = returnRoles();
+    console.log(roles)
+    const response = await inquirer.prompt([
+        {
+                type: "input",
+                message: "Please ",
+                name: "",
+        }
+    ])
+    const employee = await db.addEmployee()
+    runPrompt();
+}
+// async function getAllEmployees() {
+//     // const employees = await db.getAllEmployees()
+//     // console.table(employees);
+//     runPrompt();
+// }
+// async function getAllEmployees() {
+//     // const employees = await db.getAllEmployees()
+//     // console.table(employees);
+//     runPrompt();
+// }
+// async function getAllEmployees() {
+//     const employees = await db.getAllEmployees()
+//     console.table(employees);
+//     runPrompt();
+// }
+
+
+
+runPrompt();

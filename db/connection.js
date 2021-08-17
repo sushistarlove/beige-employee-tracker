@@ -7,14 +7,11 @@ const connection = mysql.createConnection({
     // Your username
     user: 'root',
     // Your password
-    password: 'root',
-    database: 'top_songsDB',
+    password: 'Blacksnake123',
+    database: 'trackerDB',
 });
 
-connection.connect((err) => {
-    if (err) throw err;
-    runSearch();
-});
+connection.connect();
 
 connection.query = util.promisify(connection.query);
 
